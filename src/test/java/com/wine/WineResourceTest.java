@@ -21,7 +21,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 public class WineResourceTest {
     private HttpServer server;
     private WebTarget target;
-    public static final String BASE_URI = "http://localhost:8080/";
+    public static final String BASE_URI = "http://localhost:8899/";
 
     @BeforeEach
     public void setUp() throws Exception {
