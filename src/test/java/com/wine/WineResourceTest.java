@@ -28,7 +28,7 @@ public class WineResourceTest {
         // start the server
         final ResourceConfig rc = new ResourceConfig().packages("com.wine");
         server =  GrizzlyHttpServerFactory.createHttpServer(URI.create(BASE_URI), rc);
-
+        server.start();
         // create the client
         Client c = ClientBuilder.newClient();
 
@@ -39,11 +39,13 @@ public class WineResourceTest {
         // c.configuration().enable(new org.glassfish.jersey.media.json.JsonJaxbFeature());
 
         target = c.target(BASE_URI);
+        System.out.println("Server is starting on: " + BASE_URI);
     }
 
     @AfterEach
     public void tearDown() throws Exception {
-        server.stop();
+        server.shutdownNow();
+        System.out.println("Server is closed: " + BASE_URI);
     }
 
     @Test

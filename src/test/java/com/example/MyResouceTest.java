@@ -41,7 +41,8 @@ class MyResourceTest {
 
     @AfterEach
     public void tearDown() throws Exception {
-        server.stop();
+        server.shutdownNow();
+        System.out.println("Server is closed: " + BASE_URI);
     }
 
     /**
