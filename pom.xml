@@ -38,6 +38,26 @@
                     </excludes>
                 </configuration>
             </plugin>
+            <!-- JaCoCo plugin configuration -->
+            <plugin>
+                <groupId>org.jacoco</groupId>
+                <artifactId>jacoco-maven-plugin</artifactId>
+                <version>${jacoco.version}</version>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>prepare-agent</goal> <!-- Prepare JaCoCo agent before tests -->
+                        </goals>
+                    </execution>
+                    <execution>
+                        <id>report</id>
+                        <phase>verify</phase> <!-- Generate report during verify phase -->
+                        <goals>
+                            <goal>report</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
         </plugins>
     </build>
 
@@ -123,5 +143,6 @@
         <junit-jupiter.version>5.10.0</junit-jupiter.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <war.mvn.plugin.version>3.4.0</war.mvn.plugin.version>
+        <jacoco.version>0.8.7</jacoco.version>
     </properties>
 </project>
