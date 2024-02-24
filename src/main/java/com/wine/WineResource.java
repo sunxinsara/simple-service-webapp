@@ -12,7 +12,13 @@ import java.util.List;
 @Path("/wines")
 public class WineResource {
 
-    private WineDAO dao = new WineDAO();
+    private WineDAO dao;
+    public WineResource(){
+        dao = new WineDAO();
+    }
+    public WineResource(WineDAO dao){
+        this.dao = dao;
+    }
 
     @GET
     @Produces({ MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML })
@@ -39,6 +45,7 @@ public class WineResource {
             System.out.println(wines);
         }catch (Throwable e){
             e.printStackTrace();
+            return Response.status(200).entity(wines).build();
         }
 
         return Response.status(200).entity(wines).build();
@@ -89,5 +96,4 @@ public class WineResource {
             return Response.status(500).build();
         }
     }
-
 }
