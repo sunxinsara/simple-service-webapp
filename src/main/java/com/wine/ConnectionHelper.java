@@ -1,47 +1,34 @@
 package com.wine;
 
+import com.zaxxer.hikari.HikariConfig;
+import com.zaxxer.hikari.HikariDataSource;
 import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.SQLException;
 
-public class ConnectionHelper
-{
-    private String url;
-    private static ConnectionHelper instance;
+public class ConnectionHelper {
+    private static HikariDataSource dataSource;
 
-    private ConnectionHelper()
-    {
-        String driver = null;
-        try {
-            Class.forName("com.mysql.jdbc.Driver");
-            url = "jdbc:mysql://localhost/cellar?user=root&password=123456";
-            driver="com.mysql.jdbc.Driver";
-            Class.forName(driver);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+    static {
+        HikariConfig config = new HikariConfig();
+        config.setJdbcUrl("jdbc:mysql://localhost/cellar?user=root&password=123456");
+        config.setDriverClassName("com.mysql.jdbc.Driver");
+        config.setMaximumPoolSize(10); // Adjust pool size as needed
+        config.setPoolName("WinePool");
+        // Additional configuration...
+        dataSource = new HikariDataSource(config);
     }
 
     public static Connection getConnection() throws SQLException {
-        if (instance == null) {
-            instance = new ConnectionHelper();
-        }
-        try {
-            return DriverManager.getConnection(instance.url);
-        } catch (SQLException e) {
-            throw e;
-        }
+        return dataSource.getConnection();
     }
 
-    public static void close(Connection connection)
-    {
-        try {
-            if (connection != null) {
+    public static void close(Connection connection) {
+        if (connection != null) {
+            try {
                 connection.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
             }
-        } catch (SQLException e) {
-            e.printStackTrace();
         }
     }
-
 }

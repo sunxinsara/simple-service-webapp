@@ -8,21 +8,17 @@ import java.util.Locale;
 public class WineDAO {
 
     public List<Wine> findAll() {
-        List<Wine> list = new ArrayList<Wine>();
-        Connection c = null;
+        List<Wine> list = new ArrayList<>();
         String sql = "SELECT * FROM wine ORDER BY name";
-        try {
-            c = ConnectionHelper.getConnection();
-            Statement s = c.createStatement();
-            ResultSet rs = s.executeQuery(sql);
+        try (Connection c = ConnectionHelper.getConnection();
+             Statement s = c.createStatement();
+             ResultSet rs = s.executeQuery(sql)) {
             while (rs.next()) {
                 list.add(processRow(rs));
             }
         } catch (SQLException e) {
             e.printStackTrace();
             throw new RuntimeException(e);
-        } finally {
-            ConnectionHelper.close(c);
         }
         return list;
     }
