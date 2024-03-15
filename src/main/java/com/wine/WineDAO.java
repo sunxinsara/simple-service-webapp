@@ -3,9 +3,13 @@ package com.wine;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Locale;
 
 public class WineDAO {
+    public static class DatabaseException extends RuntimeException {
+        public DatabaseException(String message, Throwable cause) {
+            super(message, cause);
+        }
+    }
 
     public List<Wine> findAll() {
         List<Wine> list = new ArrayList<>();
@@ -18,7 +22,7 @@ public class WineDAO {
             }
         } catch (SQLException e) {
             e.printStackTrace();
-            throw new RuntimeException(e);
+            throw new DatabaseException("Error accessing findAll()", e);
         }
         return list;
     }
@@ -40,7 +44,7 @@ public class WineDAO {
             }
         } catch (Exception e) {
             e.printStackTrace();
-            throw new RuntimeException(e);
+            throw new DatabaseException("Error accessing findById()", e);
         }
 
         return wine;
@@ -49,7 +53,6 @@ public class WineDAO {
     public List<Wine> findeByName(String name){
         List<Wine> list = new ArrayList<>();
         String sql = "SELECT * FROM wine as e WHERE UPPER(name) LIKE ? ORDER BY name;";
-        //String sql2 = "SELECT * FROM wine as e WHERE UPPER(name) LIKE \"%CHATEAU%\" ORDER BY name;";
 
         try(
                 Connection c = ConnectionHelper.getConnection();
@@ -58,7 +61,7 @@ public class WineDAO {
 
             String parameter = "%" + name.toUpperCase() + "%";
             ps.setObject(1, parameter);
-            String re = sql + parameter;
+
 
             ResultSet rs = ps.executeQuery();
             while (rs.next()){
@@ -67,7 +70,7 @@ public class WineDAO {
 
         } catch (SQLException e){
             e.printStackTrace();
-            throw new RuntimeException(e);
+            throw new DatabaseException("Error accessing findeByName()", e);
         }
         return list;
     }
@@ -88,8 +91,6 @@ public class WineDAO {
         }catch (SQLException e){
             e.printStackTrace();
             throw new RuntimeException(e);
-        }catch (Throwable e){
-            e.printStackTrace();
         }
         return list;
     }
@@ -115,7 +116,7 @@ public class WineDAO {
             return wine;
         }catch (SQLException e){
             e.printStackTrace();
-            throw new RuntimeException(e);
+            throw new DatabaseException("Error accessing create()", e);
         }
     }
 
@@ -134,7 +135,7 @@ public class WineDAO {
             ps.setObject(8,wine.getId());
         }catch (SQLException e){
             e.printStackTrace();
-            throw new RuntimeException(e);
+            throw new DatabaseException("Error accessing update()", e);
         }
         return wine;
     }
@@ -150,7 +151,7 @@ public class WineDAO {
 
         } catch (Exception e){
             e.printStackTrace();
-            throw new RuntimeException(e);
+            throw new DatabaseException("Error accessing remove()", e);
         }
     }
 

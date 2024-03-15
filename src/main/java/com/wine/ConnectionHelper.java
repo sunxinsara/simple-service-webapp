@@ -12,8 +12,27 @@ import java.util.Properties;
 
 public class ConnectionHelper {
     private static HikariDataSource dataSource;
+    // Private constructor to prevent instantiation
+    private ConnectionHelper() {
+        // Prevents the default parameter-less constructor from being used elsewhere in your code.
+    }
+
+    // Static inner class for a custom exception
+    public static class PropertiesLoadException extends Exception {
+        public PropertiesLoadException(String message, Throwable cause) {
+            super(message, cause);
+        }
+    }
 
     static {
+        try {
+            initializeDataSource();
+        } catch (PropertiesLoadException e) {
+            throw new ExceptionInInitializerError(e);
+        }
+    }
+
+    private static void initializeDataSource() throws PropertiesLoadException {
         Properties properties = new Properties();
         try{
             properties.load(new FileInputStream("papplication-prod.properties"));
@@ -29,11 +48,11 @@ public class ConnectionHelper {
 
         } catch (FileNotFoundException e) {
             e.printStackTrace();
+            throw new PropertiesLoadException("File not found exception occurred", e);
         } catch (IOException e) {
             e.printStackTrace();
-            throw new RuntimeException("Failed to load properties file", e);
+            throw new PropertiesLoadException("Failed to load properties file", e);
         }
-
     }
 
     public static Connection getConnection() throws SQLException {
