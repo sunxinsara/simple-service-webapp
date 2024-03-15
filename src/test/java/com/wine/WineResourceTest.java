@@ -125,6 +125,7 @@ public class WineResourceTest {
 
     @Test
     void update() {
+        // simulating conflict situation
     }
 
     @Test
