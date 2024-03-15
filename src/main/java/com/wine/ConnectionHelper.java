@@ -34,8 +34,8 @@ public class ConnectionHelper {
 
     private static void initializeDataSource() throws PropertiesLoadException {
         Properties properties = new Properties();
-        try{
-            properties.load(new FileInputStream("papplication-prod.properties"));
+        try(FileInputStream fis = new FileInputStream("application-prod.properties")){
+            properties.load(fis);
             HikariConfig config = new HikariConfig();
             config.setJdbcUrl(properties.getProperty("jdbc.url"));
             config.setUsername(properties.getProperty("jdbc.username"));
