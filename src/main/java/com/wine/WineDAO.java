@@ -1,10 +1,14 @@
 package com.wine;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
 public class WineDAO {
+    private static final Logger logger = LogManager.getLogger(WineDAO.class);
     public static class DatabaseException extends RuntimeException {
         public DatabaseException(String message, Throwable cause) {
             super(message, cause);
@@ -21,7 +25,7 @@ public class WineDAO {
                 list.add(processRow(rs));
             }
         } catch (SQLException e) {
-            e.printStackTrace();
+            logger.error("Error accessing findAll()", e);
             throw new DatabaseException("Error accessing findAll()", e);
         }
         return list;
@@ -43,7 +47,7 @@ public class WineDAO {
                 }
             }
         } catch (Exception e) {
-            e.printStackTrace();
+            logger.error("Error accessing findById()", e);
             throw new DatabaseException("Error accessing findById()", e);
         }
 
@@ -69,7 +73,7 @@ public class WineDAO {
             }
 
         } catch (SQLException e){
-            e.printStackTrace();
+            logger.error("Error accessing findeByName()", e);
             throw new DatabaseException("Error accessing findeByName()", e);
         }
         return list;
@@ -89,7 +93,7 @@ public class WineDAO {
             }
 
         }catch (SQLException e){
-            e.printStackTrace();
+            logger.error("Error accessing RuntimeException()", e);
             throw new RuntimeException(e);
         }
         return list;
@@ -115,7 +119,7 @@ public class WineDAO {
             wine.setId(id);
             return wine;
         }catch (SQLException e){
-            e.printStackTrace();
+            logger.error("Error accessing create()", e);
             throw new DatabaseException("Error accessing create()", e);
         }
     }
@@ -134,7 +138,7 @@ public class WineDAO {
             ps.setObject(7,wine.getDescription());
             ps.setObject(8,wine.getId());
         }catch (SQLException e){
-            e.printStackTrace();
+            logger.error("Error accessing update()", e);
             throw new DatabaseException("Error accessing update()", e);
         }
         return wine;
@@ -149,7 +153,7 @@ public class WineDAO {
             return count == 1;
 
         } catch (Exception e){
-            e.printStackTrace();
+            logger.error("Error accessing remove()", e);
             throw new DatabaseException("Error accessing remove()", e);
         }
     }
