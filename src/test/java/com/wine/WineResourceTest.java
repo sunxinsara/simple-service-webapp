@@ -125,7 +125,26 @@ public class WineResourceTest {
 
     @Test
     void update() {
-        // simulating conflict situation
+        // 准备测试数据
+        String wineJson = "{" +
+                "\"id\": 19," +
+                "\"name\": \"Update WINE---\"," +
+                "\"year\": \"2009\"," +
+                "\"grapes\": \"Grenache / Syrah\"," +
+                "\"country\": \"Irelane\"," +
+                "\"region\": \"Southern Rhone / Gigondas\"," +
+                "\"description\": \"The aromas of fruit and spice give one a hint of the light drinkability\"," +
+                "\"picture\": \"sint_consme.jpg\"" +
+                "}";
+
+        Response response = target.path("wines/19").request(MediaType.APPLICATION_JSON)
+                .put(Entity.entity(wineJson, MediaType.APPLICATION_JSON));
+
+        System.out.println(response.getStatus());
+
+        assertEquals(201, response.getStatus()); // verify status number
+
+        System.out.println(response.readEntity(String.class));
     }
 
     @Test
