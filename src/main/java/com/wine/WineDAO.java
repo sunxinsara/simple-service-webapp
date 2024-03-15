@@ -96,11 +96,11 @@ public class WineDAO {
     }
 
     public Wine create(Wine wine){
-        PreparedStatement ps = null;
         String sql = "INSERT INTO wine (name, grapes, country, region, year, picture, description) VALUES (?,?,?,?,?,?,?);";
-        try(Connection c = ConnectionHelper.getConnection();) {
+        try(Connection c = ConnectionHelper.getConnection();
+            PreparedStatement ps = c.prepareStatement(sql, new String[] {"ID"});) {
 
-            ps = c.prepareStatement(sql, new String[] {"ID"});
+
             ps.setObject(1, wine.getName());
             ps.setObject(2, wine.getGrapes());
             ps.setObject(3, wine.getCountry());
@@ -122,9 +122,9 @@ public class WineDAO {
 
     public Wine update(Wine wine){
         String sql = "UPDATE wine SET name=?, grapes=?, country=?, region=?, year=?, picture=?, description=? WHERE id=?";
-        try(Connection c = ConnectionHelper.getConnection();) {
+        try(Connection c = ConnectionHelper.getConnection();
+            PreparedStatement ps = c.prepareStatement(sql);) {
 
-            PreparedStatement ps = c.prepareStatement(sql);
             ps.setObject(1,wine.getName());
             ps.setObject(2,wine.getGrapes());
             ps.setObject(3,wine.getCountry());
@@ -142,9 +142,8 @@ public class WineDAO {
 
     public boolean remove(int id){
         String sql = "DELETE FROM wine WHERE id=?";
-        try(Connection c = ConnectionHelper.getConnection();) {
-
-            PreparedStatement ps = c.prepareStatement(sql);
+        try(Connection c = ConnectionHelper.getConnection();
+            PreparedStatement ps = c.prepareStatement(sql);) {
             ps.setObject(1,id);
             int count = ps.executeUpdate();
             return count == 1;
