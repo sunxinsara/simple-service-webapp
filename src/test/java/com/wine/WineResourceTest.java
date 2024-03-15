@@ -125,6 +125,30 @@ public class WineResourceTest {
 
     @Test
     void update() {
+        // 准备测试数据
+        String wineJson = "{" +
+                "\"id\": 19," +
+                "\"name\": \"Update WINE---\"," +
+                "\"year\": \"2009\"," +
+                "\"grapes\": \"Grenache / Syrah\"," +
+                "\"country\": \"Irelane\"," +
+                "\"region\": \"Southern Rhone / Gigondas\"," +
+                "\"description\": \"The aromas of fruit and spice give one a hint of the light drinkability\"," +
+                "\"picture\": \"sint_consme.jpg\"" +
+                "}";
+
+        // 发送PUT请求到你的接口
+        Response response = target.path("wines/19").request(MediaType.APPLICATION_JSON)
+                .put(Entity.entity(wineJson, MediaType.APPLICATION_JSON));
+
+        // 输出响应状态以便调试
+        System.out.println(response.getStatus());
+
+        // 验证响应状态码是否为201（已创建），表示更新成功
+        assertEquals(201, response.getStatus());
+
+        // 打印出响应体，可选
+        System.out.println(response.readEntity(String.class));
     }
 
     @Test
