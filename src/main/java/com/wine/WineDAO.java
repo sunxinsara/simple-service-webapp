@@ -23,37 +23,39 @@ public class WineDAO {
         return list;
     }
 
-    public Wine findById(int id){
+    public Wine findById(int id) {
         String sql = "SELECT * FROM wine WHERE id = ?";
         Wine wine = null;
-        Connection c = null;
-        try {
-            c = ConnectionHelper.getConnection();
-            PreparedStatement ps = c.prepareStatement(sql);
-            ps.setObject(1, id);
-            ResultSet rs = ps.executeQuery();
-            if (rs.next()){
-                wine = processRow(rs);
-            }
 
-        }catch (Exception e){
+        try (
+                Connection c = ConnectionHelper.getConnection();
+                PreparedStatement ps = c.prepareStatement(sql);
+        ) {
+            ps.setObject(1, id);
+
+            try (ResultSet rs = ps.executeQuery()) {
+                if (rs.next()) {
+                    wine = processRow(rs);
+                }
+            }
+        } catch (Exception e) {
             e.printStackTrace();
             throw new RuntimeException(e);
-        }finally {
-            ConnectionHelper.close(c);
         }
+
         return wine;
     }
 
     public List<Wine> findeByName(String name){
         List<Wine> list = new ArrayList<>();
-        Connection c = null;
         String sql = "SELECT * FROM wine as e WHERE UPPER(name) LIKE ? ORDER BY name;";
         //String sql2 = "SELECT * FROM wine as e WHERE UPPER(name) LIKE \"%CHATEAU%\" ORDER BY name;";
 
-        try {
-            c = ConnectionHelper.getConnection();
-            PreparedStatement ps = c.prepareStatement(sql);
+        try(
+                Connection c = ConnectionHelper.getConnection();
+                PreparedStatement ps = c.prepareStatement(sql);
+                ) {
+
             String parameter = "%" + name.toUpperCase() + "%";
             ps.setObject(1, parameter);
             String re = sql + parameter;
@@ -66,19 +68,16 @@ public class WineDAO {
         } catch (SQLException e){
             e.printStackTrace();
             throw new RuntimeException(e);
-        } finally {
-            ConnectionHelper.close(c);
         }
         return list;
     }
 
     public List<Wine> findByCountryAndGrapes(String country, String grapes){
         List<Wine> list = new ArrayList<>();
-        Connection c = null;
         String sql = "SELECT * FROM wine as e WHERE UPPER(country) LIKE ? AND UPPER(grapes) LIKE ? ORDER BY name;";
-        try {
-            c = ConnectionHelper.getConnection();
-            PreparedStatement ps = c.prepareStatement(sql);
+        try(  Connection c = ConnectionHelper.getConnection();
+              PreparedStatement ps = c.prepareStatement(sql);) {
+
             ps.setObject(1, "%" + country.toUpperCase() + "%");
             ps.setObject(2, "%" + grapes.toUpperCase() + "%");
             ResultSet rs = ps.executeQuery();
@@ -91,18 +90,15 @@ public class WineDAO {
             throw new RuntimeException(e);
         }catch (Throwable e){
             e.printStackTrace();
-        }finally {
-            ConnectionHelper.close(c);
         }
         return list;
     }
 
     public Wine create(Wine wine){
-        Connection c = null;
         PreparedStatement ps = null;
         String sql = "INSERT INTO wine (name, grapes, country, region, year, picture, description) VALUES (?,?,?,?,?,?,?);";
-        try {
-            c = ConnectionHelper.getConnection();
+        try(Connection c = ConnectionHelper.getConnection();) {
+
             ps = c.prepareStatement(sql, new String[] {"ID"});
             ps.setObject(1, wine.getName());
             ps.setObject(2, wine.getGrapes());
@@ -124,10 +120,9 @@ public class WineDAO {
     }
 
     public Wine update(Wine wine){
-        Connection c = null;
         String sql = "UPDATE wine SET name=?, grapes=?, country=?, region=?, year=?, picture=?, description=? WHERE id=?";
-        try {
-            c = ConnectionHelper.getConnection();
+        try(Connection c = ConnectionHelper.getConnection();) {
+
             PreparedStatement ps = c.prepareStatement(sql);
             ps.setObject(1,wine.getName());
             ps.setObject(2,wine.getGrapes());
@@ -140,17 +135,14 @@ public class WineDAO {
         }catch (SQLException e){
             e.printStackTrace();
             throw new RuntimeException(e);
-        }finally {
-            ConnectionHelper.close(c);
         }
         return wine;
     }
 
     public boolean remove(int id){
-        Connection c = null;
         String sql = "DELETE FROM wine WHERE id=?";
-        try {
-            c = ConnectionHelper.getConnection();
+        try(Connection c = ConnectionHelper.getConnection();) {
+
             PreparedStatement ps = c.prepareStatement(sql);
             ps.setObject(1,id);
             int count = ps.executeUpdate();
@@ -159,8 +151,6 @@ public class WineDAO {
         } catch (Exception e){
             e.printStackTrace();
             throw new RuntimeException(e);
-        }finally {
-            ConnectionHelper.close(c);
         }
     }
 
