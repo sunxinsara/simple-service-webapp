@@ -11,6 +11,15 @@
 
     <build>
         <finalName>simple-service-webapp</finalName>
+        <resources>
+            <resource>
+                <directory>src/main/resources</directory>
+            </resource>
+            <!-- extra resources path -->
+            <resource>
+                <directory>src/main/properties</directory>
+            </resource>
+        </resources>
         <plugins>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
