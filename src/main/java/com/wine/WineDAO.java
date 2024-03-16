@@ -93,8 +93,8 @@ public class WineDAO {
             }
 
         }catch (SQLException e){
-            logger.error("Error accessing RuntimeException()", e);
-            throw new RuntimeException(e);
+            logger.error("Error accessing findByCountryAndGrapes()", e);
+            throw new DatabaseException("Error accessing findByCountryAndGrapes()", e);
         }
         return list;
     }

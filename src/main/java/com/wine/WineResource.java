@@ -3,8 +3,9 @@ package com.wine;
 import jakarta.ws.rs.*;
 import jakarta.ws.rs.core.MediaType;
 import jakarta.ws.rs.core.Response;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
-import java.util.ArrayList;
 import java.util.List;
 
 
@@ -13,6 +14,7 @@ import java.util.List;
 public class WineResource {
 
     private WineDAO dao;
+    private static final Logger logger = LogManager.getLogger(WineDAO.class);
     public WineResource(){
         dao = new WineDAO();
     }
@@ -23,9 +25,7 @@ public class WineResource {
     @GET
     @Produces({ MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML })
     public List<Wine> findAll() {
-        System.out.println("findAll");
         List<Wine> list = dao.findAll();
-        System.out.println(list);
         return list;
     }
 
@@ -43,8 +43,8 @@ public class WineResource {
         try {
             wines = dao.findeByName(name);
             System.out.println(wines);
-        }catch (Throwable e){
-            e.printStackTrace();
+        }catch (Exception e){
+            logger.warn("findByName", e);
             return Response.status(200).entity(wines).build();
         }
 
@@ -65,8 +65,8 @@ public class WineResource {
         Wine wineObj = null;
         try {
             wineObj = dao.create(wine);
-        } catch (Throwable e){
-            e.printStackTrace();
+        } catch (Exception e){
+            logger.warn("create", e);
         }
 
         return Response.status(201).entity(wineObj).build();
@@ -79,8 +79,8 @@ public class WineResource {
         try {
             dao.update(wine);
             return Response.status(201).entity(wine).build();
-        }catch (Throwable e){
-            e.printStackTrace();
+        }catch (Exception e){
+            logger.warn("update", e);
             return Response.status(500).entity("error sql").build();
         }
     }
@@ -91,8 +91,8 @@ public class WineResource {
         try {
             dao.remove(id);
             return Response.status(204).entity("Deleted!!").build();
-        }catch (Throwable e){
-            e.printStackTrace();
+        }catch (Exception e){
+            logger.warn("remove", e);
             return Response.status(500).build();
         }
     }
