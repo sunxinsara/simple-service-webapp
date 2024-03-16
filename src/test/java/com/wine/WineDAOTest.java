@@ -70,7 +70,7 @@ class WineDAOTest {
     @Test
     void findByName_Empty() {
         List<Wine> wines = wineDAO.findeByName("xxxx");
-        assertNull(wines);
+        assertTrue(wines.size() ==0 );
     }
 
     @Test
@@ -81,15 +81,31 @@ class WineDAOTest {
     @Test
     void findByCountryAndGrapes_empty() {
         List<Wine> wines = wineDAO.findByCountryAndGrapes("xxxx", "merlot");
-        assertNull(wines);
+        assertTrue(wines.size() ==0 );
     }
 
     @Test
     void create() {
+        Wine wine = new Wine();
+        wine.setId(1);
+        wine.setName("Red Wine Test");
+        wine.setCountry("China");
+        wine.setGrapes("Black");
+        wine.setPicture("none.jpg");
+        wine.setYear("1998");
+
+        Wine wineRes = wineDAO.create(wine);
+        assertEquals(wine.getName(), wineRes.getName());
     }
 
     @Test
     void update() {
+        Wine wineToUpdate = new Wine();
+        wineToUpdate.setId(1);
+        wineToUpdate.setName("Updated Wine");
+
+        Wine wineResult = wineDAO.update(wineToUpdate);
+        assertEquals(wineResult, wineToUpdate);
     }
 
     @Test
