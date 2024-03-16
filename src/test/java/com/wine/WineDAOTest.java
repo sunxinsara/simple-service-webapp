@@ -87,7 +87,7 @@ class WineDAOTest {
     @Test
     void create() {
         Wine wine = new Wine();
-        wine.setId(1);
+        wine.setId(61);
         wine.setName("Red Wine Test");
         wine.setCountry("China");
         wine.setGrapes("Black");
@@ -110,9 +110,33 @@ class WineDAOTest {
 
     @Test
     void remove() {
+        boolean res = wineDAO.remove(13);
+        assertTrue(res);
     }
 
     @Test
-    void processRow() {
+    void processRow() throws SQLException {
+// Create a mock ResultSet.
+        mockResultSet = mock(ResultSet.class);
+
+        // Set up the mock ResultSet behavior.
+        when(mockResultSet.getInt("id")).thenReturn(1);
+        when(mockResultSet.getString("name")).thenReturn("BLOCK NINE");
+        when(mockResultSet.getString("grapes")).thenReturn("Pinot Noir");
+        when(mockResultSet.getString("country")).thenReturn("USA");
+        when(mockResultSet.getString("region")).thenReturn("California");
+        when(mockResultSet.getString("year")).thenReturn("2009");
+        when(mockResultSet.getString("picture")).thenReturn("block_nine.jpg");
+        when(mockResultSet.getString("description")).thenReturn("With hints of ginger and spice, this wine makes an excellent complement to light appetizer and dessert fare for a holiday gathering.");
+
+        Wine result = wineDAO.processRow(mockResultSet);
+        assertEquals(1, result.getId());
+        assertEquals("BLOCK NINE", result.getName());
+        assertEquals("Pinot Noir", result.getGrapes());
+        assertEquals("USA", result.getCountry());
+        assertEquals("California", result.getRegion());
+        assertEquals("2009", result.getYear());
+        assertEquals("block_nine.jpg", result.getPicture());
+
     }
 }
