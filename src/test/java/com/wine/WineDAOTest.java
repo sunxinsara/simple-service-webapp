@@ -111,7 +111,7 @@ class WineDAOTest {
     @Test
     void remove() {
         List<Wine> result = wineDAO.findAll();
-        boolean res = wineDAO.remove(result.getLast().getId());
+        boolean res = wineDAO.remove(result.get(result.size() - 1).getId());
         assertTrue(res);
     }
 
