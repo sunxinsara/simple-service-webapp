@@ -6,7 +6,9 @@ import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
+import org.mockito.Spy;
 
+import java.lang.reflect.Field;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -23,6 +25,18 @@ class WineResource2Test {
     @BeforeEach
     void setUp(){
         MockitoAnnotations.openMocks(this);
+    }
+
+    @Spy
+    private WineResource resource = new WineResource();
+    @Test
+    void defaultConstructorInitializesWineDAO() throws NoSuchFieldException, IllegalAccessException {
+        MockitoAnnotations.openMocks(this);
+        wineResource = spy(WineResource.class);
+        Field daoField = WineResource.class.getDeclaredField("dao");
+        daoField.setAccessible(true);
+        WineDAO wineDAOTest = (WineDAO) daoField.get(wineResource);
+        assertNotNull(wineDAOTest, "wineDAO should not be null");
     }
 
     @Test
