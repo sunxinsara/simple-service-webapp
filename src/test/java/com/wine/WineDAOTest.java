@@ -64,12 +64,12 @@ class WineDAOTest {
     }
     @Test
     void findByName() {
-        List<Wine> wines = wineDAO.findeByName("merlot");
+        List<Wine> wines = wineDAO.findByName("merlot");
         assertNotNull(wines);
     }
     @Test
     void findByName_Empty() {
-        List<Wine> wines = wineDAO.findeByName("xxxx");
+        List<Wine> wines = wineDAO.findByName("xxxx");
         assertTrue(wines.size() ==0 );
     }
 
@@ -110,7 +110,8 @@ class WineDAOTest {
 
     @Test
     void remove() {
-        boolean res = wineDAO.remove(13);
+        List<Wine> result = wineDAO.findAll();
+        boolean res = wineDAO.remove(result.size());
         assertTrue(res);
     }
 
