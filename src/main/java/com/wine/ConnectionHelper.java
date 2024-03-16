@@ -6,6 +6,7 @@ import com.zaxxer.hikari.HikariDataSource;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.io.InputStream;
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.Properties;
@@ -34,8 +35,13 @@ public class ConnectionHelper {
 
     private static void initializeDataSource() throws PropertiesLoadException {
         Properties properties = new Properties();
-        try(FileInputStream fis = new FileInputStream("application-prod.properties")){
-            properties.load(fis);
+        try(InputStream is = ConnectionHelper.class.getClassLoader().getResourceAsStream("application-prod.properties")){
+            if (is != null) {
+                properties.load(is);
+            } else {
+                throw new FileNotFoundException("Property file 'application-prod.properties' not found in the classpath");
+            }
+
             HikariConfig config = new HikariConfig();
             config.setJdbcUrl(properties.getProperty("jdbc.url"));
             config.setUsername(properties.getProperty("jdbc.username"));
