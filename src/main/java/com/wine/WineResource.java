@@ -14,7 +14,7 @@ import java.util.List;
 public class WineResource {
 
     private WineDAO dao;
-    private static final Logger logger = LogManager.getLogger(WineDAO.class);
+    private static final Logger logger = LogManager.getLogger(WineResource.class);
     public WineResource(){
         dao = new WineDAO();
     }
@@ -25,15 +25,23 @@ public class WineResource {
     @GET
     @Produces({ MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML })
     public List<Wine> findAll() {
-        List<Wine> list = dao.findAll();
-        return list;
+        return dao.findAll();
     }
 
     @GET @Path("{id}")
     @Produces({ MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML })
     public Response findById(@PathParam("id") int id){
-        Wine wine = dao.findById(id);
-        return Response.status(200).entity(wine).build();
+        try {
+            Wine wine = dao.findById(id);
+            if (wine == null){
+                return Response.status(404).build();
+            }
+            return Response.status(200).entity(wine).build();
+        }catch (Exception e){
+            logger.warn("findByName", e);
+            return Response.status(500).build();
+        }
+
     }
 
     @GET @Path("search/{query}")
@@ -41,11 +49,10 @@ public class WineResource {
     public Response findByName(@PathParam("query") String name){
         List<Wine> wines = null;
         try {
-            wines = dao.findeByName(name);
-            System.out.println(wines);
+            wines = dao.findByName(name);
         }catch (Exception e){
             logger.warn("findByName", e);
-            return Response.status(200).entity(wines).build();
+            return Response.status(404).build();
         }
 
         return Response.status(200).entity(wines).build();
@@ -54,8 +61,14 @@ public class WineResource {
     @GET @Path("/query")
     @Produces({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
     public Response findByCountryAndGrapes(@QueryParam("country") String country, @QueryParam("grapes") String grape){
-        List<Wine> wines = dao.findByCountryAndGrapes(country, grape);
-        return Response.status(200).entity(wines).build();
+        try {
+            List<Wine> wines = dao.findByCountryAndGrapes(country, grape);
+            return Response.status(200).entity(wines).build();
+        }catch (Exception e){
+            return Response.status(500).build();
+        }
+
+
     }
 
     @POST
@@ -67,6 +80,7 @@ public class WineResource {
             wineObj = dao.create(wine);
         } catch (Exception e){
             logger.warn("create", e);
+            return Response.status(500).entity(wineObj).build();
         }
 
         return Response.status(201).entity(wineObj).build();

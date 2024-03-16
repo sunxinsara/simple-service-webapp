@@ -49,7 +49,7 @@ class MyResourceTest {
      * Test to see that the message "Got it!" is sent in the response.
      */
     @Test
-    public void testGetIt() {
+    void testGetIt() {
         try{
             String responseMsg = target.path("myresource").request().get(String.class);
             System.out.println(responseMsg);

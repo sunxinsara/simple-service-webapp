@@ -37,9 +37,18 @@ class WineResource2Test {
         wine.setPicture("none.jpg");
         wine.setYear("1998");
 
+        when(wineDAO.findAll()).thenReturn(expectedList);
         List<Wine> resultList = wineResource.findAll();
         assertNotNull(resultList);
         assertEquals(expectedList, resultList);
+        verify(wineDAO).findAll();
+    }
+
+    @Test
+    void findAll_Empty() {
+        when(wineDAO.findAll()).thenReturn(new ArrayList<>());
+        List<Wine> resultList = wineResource.findAll();
+        assertTrue(resultList.isEmpty());
         verify(wineDAO).findAll();
     }
 
@@ -59,18 +68,40 @@ class WineResource2Test {
     }
 
     @Test
+    void findById_NotFound() {
+        when(wineDAO.findById(anyInt())).thenReturn(null);
+
+        Response response = wineResource.findById(99); // Assuming ID 99 does not exist
+
+        assertEquals(404, response.getStatus(), "Expected a 404 status for a non-existent wine ID");
+        verify(wineDAO).findById(99);
+    }
+
+    @Test
     void findByName() {
         List<Wine> expectedWines = new ArrayList<>();
         expectedWines.add(new Wine());
 
-        when(wineDAO.findeByName("Merlot")).thenReturn(expectedWines);
+        when(wineDAO.findByName("Merlot")).thenReturn(expectedWines);
 
         Response response = wineResource.findByName("Merlot");
 
         assertEquals(200, response.getStatus());
         assertEquals(expectedWines, response.getEntity());
-        verify(wineDAO).findeByName("Merlot");
+        verify(wineDAO).findByName("Merlot");
     }
+
+    @Test
+    void findByName_Empty() {
+        when(wineDAO.findByName("Unknown")).thenReturn(new ArrayList<>());
+
+        Response response = wineResource.findByName("Unknown");
+
+        assertEquals(200, response.getStatus());
+        assertTrue(((List<Wine>) response.getEntity()).isEmpty());
+        verify(wineDAO).findByName("Unknown");
+    }
+
 
     @Test
     void findByCountryAndGrapes() {
@@ -116,6 +147,20 @@ class WineResource2Test {
 
         assertEquals(201, response.getStatus());
         // assertEquals(wineToUpdate, response.getEntity());
+        verify(wineDAO).update(wineToUpdate);
+    }
+
+    @Test
+    void update_Error() {
+        Wine wineToUpdate = new Wine();
+        wineToUpdate.setId(1);
+        wineToUpdate.setName("Updated Wine");
+
+        doThrow(new RuntimeException("Database error")).when(wineDAO).update(any(Wine.class));
+
+        Response response = wineResource.update(wineToUpdate);
+
+        assertEquals(500, response.getStatus(), "Expected a 500 status due to database error");
         verify(wineDAO).update(wineToUpdate);
     }
 

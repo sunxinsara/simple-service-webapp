@@ -54,7 +54,7 @@ public class WineDAO {
         return wine;
     }
 
-    public List<Wine> findeByName(String name){
+    public List<Wine> findByName(String name){
         List<Wine> list = new ArrayList<>();
         String sql = "SELECT * FROM wine as e WHERE UPPER(name) LIKE ? ORDER BY name;";
 
@@ -103,7 +103,6 @@ public class WineDAO {
         String sql = "INSERT INTO wine (name, grapes, country, region, year, picture, description) VALUES (?,?,?,?,?,?,?);";
         try(Connection c = ConnectionHelper.getConnection();
             PreparedStatement ps = c.prepareStatement(sql, new String[] {"ID"});) {
-
 
             ps.setObject(1, wine.getName());
             ps.setObject(2, wine.getGrapes());
