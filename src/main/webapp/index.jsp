@@ -1,12 +1,18 @@
-<!DOCTYPE html>
-<html lang="en" xml:lang="en">
+<!DOCTYPE HTML>
+<html>
 <head>
-    <title>My Web Application</title>
+    <title>Cellar</title>
+    <link rel="stylesheet" href="css/styles.css" />
+    <script src="js/jquery-3.4.1.js"></script>
+    <script src="js/main.js"></script>
 </head>
+
 <body>
-<h2>Jersey RESTful Web Application!</h2>
-<p><a href="webapi/myresource">Jersey resource</a></p>
-<p>Visit <a href="http://jersey.java.net">Project Jersey website</a>
-    for more information on Jersey!</p>
+<h2>Welcome to the WineCellar Application</h2>
+
+<div class="leftArea">
+    <ul id="wineList"></ul>
+</div>
+
 </body>
 </html>
