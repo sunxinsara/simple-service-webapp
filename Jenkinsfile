@@ -42,7 +42,6 @@ pipeline{
 
             post {
                 always {
-                    bat 'echo %CD% '
                     jacoco(execPattern: '**/target/jacoco.exec')
                     junit '**/target/surefire-reports/*.xml'
                 }
