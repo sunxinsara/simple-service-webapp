@@ -75,7 +75,6 @@
             </plugin>
         </plugins>
     </build>
-
     <dependencyManagement>
         <dependencies>
             <dependency>
@@ -87,7 +86,6 @@
             </dependency>
         </dependencies>
     </dependencyManagement>
-
     <dependencies>
         <dependency>
             <groupId>org.glassfish.jersey.containers</groupId>
@@ -145,7 +143,6 @@
             <version>2.15.2</version>
             <scope>test</scope>
         </dependency>
-
         <dependency>
             <groupId>org.glassfish.jersey.containers</groupId>
             <artifactId>jersey-container-grizzly2-http</artifactId>

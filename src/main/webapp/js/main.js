@@ -2,7 +2,6 @@ var rootURL = "http://localhost:9090/simple_service_webapp_war_exploded/webapi/w
 var currentWine;
 $(document).ready(function(){
     findAll();
-
     $(document).on('click', '#wineList a', function(){
         var hrefValue = $(this).attr('href');
         findById(hrefValue.substring(1));
