@@ -50,7 +50,7 @@ pipeline{
         stage('SonarCloud Analysis') {
             steps {
                 // Avoid redundant work
-                bat "mvn sonar:sonar -Dsonar.token=%SONAR_TOKEN% -Dsonar.host.url=%SONAR_HOST_URL% -Dsonar.organization=%SONAR_ORGANIZATION% -Dsonar.projectKey=%SONAR_PROJECT_KEY% -Dsonar.language=java"
+                bat "mvn sonar:sonar -Dsonar.token=%SONAR_TOKEN% -Dsonar.host.url=%SONAR_HOST_URL% -Dsonar.organization=%SONAR_ORGANIZATION% -Dsonar.projectKey=%SONAR_PROJECT_KEY% -Dsonar.language=java -Dsonar.sources=src/main/java -Dsonar.exclusions=**/*.css,**/*.js,**/*.jsp,**/*.xml"
             }
         }
         
