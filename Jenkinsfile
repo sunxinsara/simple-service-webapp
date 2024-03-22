@@ -49,7 +49,8 @@ pipeline{
         }
         stage('SonarCloud Analysis') {
             steps {
-                bat "mvn clean verify sonar:sonar -Dsonar.token=%SONAR_TOKEN% -Dsonar.host.url=%SONAR_HOST_URL% -Dsonar.organization=%SONAR_ORGANIZATION% -Dsonar.projectKey=%SONAR_PROJECT_KEY%"
+                // Avoid redundant work
+                bat "mvn sonar:sonar -Dsonar.token=%SONAR_TOKEN% -Dsonar.host.url=%SONAR_HOST_URL% -Dsonar.organization=%SONAR_ORGANIZATION% -Dsonar.projectKey=%SONAR_PROJECT_KEY%"
             }
         }
         
