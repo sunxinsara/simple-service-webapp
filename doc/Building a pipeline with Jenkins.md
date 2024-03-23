@@ -22,11 +22,11 @@ This method provides a quick way to verify Jenkins' operational status and its n
 
 ## Build a new job
 
-![](C:\Users\sunxin\AppData\Roaming\marktext\images\2024-03-23-13-10-47-image.png)
+![](./images/2024-03-23-13-10-47-image.png)
 
 There are multiple ways to create a pipeline. I choose the easiest one which is to create a Jenkinsfile and store it in your SCM(here is GitHub). Then choose pipeline from SCM. Tell your link that jenkins can get all your jenkins code automatically for you.
 
-![Screenshot 2024-03-23 13.16.19.png](C:\Users\sunxin\AppData\Roaming\marktext\images\Screenshot%202024-03-23%2013.16.19.png)
+![Screenshot 2024-03-23 13.16.19.png](./images/Screenshot%202024-03-23%2013.16.19.png)
 
 
 
@@ -34,34 +34,34 @@ There are multiple ways to create a pipeline. I choose the easiest one which is 
 
 Details in Jenkinsfile.
 
-![](C:\Users\sunxin\AppData\Roaming\marktext\images\2024-03-23-13-17-46-image.png)
+![](./images/2024-03-23-13-17-46-image.png)
 
-![](C:\Users\sunxin\AppData\Roaming\marktext\images\2024-03-23-13-17-58-image.png)
+![](./images/2024-03-23-13-17-58-image.png)
 
-![](C:\Users\sunxin\AppData\Roaming\marktext\images\2024-03-23-13-21-22-image.png)
+![](./images/2024-03-23-13-21-22-image.png)
 
-![](C:\Users\sunxin\AppData\Roaming\marktext\images\2024-03-23-13-21-35-image.png)
+![](./images/2024-03-23-13-21-35-image.png)
 
 ## Stage view
 
-![](C:\Users\sunxin\AppData\Roaming\marktext\images\2024-03-23-13-24-18-image.png)
+![](./images/2024-03-23-13-24-18-image.png)
 
 ## Build result
 
-![](C:\Users\sunxin\AppData\Roaming\marktext\images\2024-03-23-13-30-30-image.png)
+![](./images/2024-03-23-13-30-30-image.png)
 
 ## Get your archieve file
 
 Workspaces => target
 
-![](C:\Users\sunxin\AppData\Roaming\marktext\images\2024-03-23-13-31-38-image.png)
+![](./images/2024-03-23-13-31-38-image.png)
 
 ## Coverage View in Jenkins
 
-![](C:\Users\sunxin\AppData\Roaming\marktext\images\2024-03-23-13-32-15-image.png)
+![](./images/2024-03-23-13-32-15-image.png)
 
 ## Test Result
 
-![](C:\Users\sunxin\AppData\Roaming\marktext\images\2024-03-23-13-25-59-image.png)
+![](./images/2024-03-23-13-25-59-image.png)
 
-![](C:\Users\sunxin\AppData\Roaming\marktext\images\2024-03-23-13-32-35-image.png)
+![](./images/2024-03-23-13-32-35-image.png)
