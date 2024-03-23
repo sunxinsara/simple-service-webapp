@@ -25,19 +25,19 @@ The `pom.xml` file is central to a Maven project, containing configuration detai
 - **`<dependencies>`**: Specifies project dependencies that Maven will automatically download and include in the build process.
 - **`<build>`**: Contains build-related information, including plugins and their configurations.
   
-  ![](C:\Users\sunxin\AppData\Roaming\marktext\images\2024-03-23-16-50-37-image.png)
+  ![](./images/2024-03-23-16-50-37-image.png)
 
 ## JaCoCo Configuration
 
-![](C:\Users\sunxin\AppData\Roaming\marktext\images\2024-03-23-16-52-02-image.png)
+![](./images/2024-03-23-16-52-02-image.png)
 
 ## Unit test collection
 
-![](C:\Users\sunxin\AppData\Roaming\marktext\images\2024-03-23-16-53-12-image.png)
+![](./images/2024-03-23-16-53-12-image.png)
 
 ## SonarQube scanner
 
-![](C:\Users\sunxin\AppData\Roaming\marktext\images\2024-03-23-16-53-47-image.png)
+![](./images/2024-03-23-16-53-47-image.png)
 
 ## Maven command in Jenkisfile
 
@@ -45,19 +45,19 @@ The `pom.xml` file is central to a Maven project, containing configuration detai
 
 `bat "mvn clean package -DskipTests"`: This command cleans up the artifacts from the previous build and then performs a new build while skipping tests. This is to ensure a quick compilation and packaging process to verify that the build succeeds without needing to run tests.
 
-![](C:\Users\sunxin\AppData\Roaming\marktext\images\2024-03-23-16-57-53-image.png)
+![](./images/2024-03-23-16-57-53-image.png)
 
 ### Test Stage
 
 `bat "mvn test jacoco:prepare-agent jacoco:report"`: This command runs unit tests and collects JaCoCo code coverage reports. Since the build stage skipped the tests, this stage ensures that tests are executed and coverage data is generated, which is an essential part of the continuous integration process.
 
-![](C:\Users\sunxin\AppData\Roaming\marktext\images\2024-03-23-16-58-02-image.png)
+![](./images/2024-03-23-16-58-02-image.png)
 
 ### SonarCloud Analysis Stage
 
 `bat "mvn sonar:sonar ..."`: This command uploads the code analysis results to SonarCloud for code quality assessment. This stage does not involve building or testing the project but focuses on analyzing the quality of the code.
 
-![](C:\Users\sunxin\AppData\Roaming\marktext\images\2024-03-23-16-58-18-image.png)
+![](./images/2024-03-23-16-58-18-image.png)
 
 ## Other Useful Parameters
 
