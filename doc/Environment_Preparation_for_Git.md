@@ -41,7 +41,6 @@ Host bitbucket.org
 Host gitlab.com
     User git
     IdentityFile ~/.ssh/gitlab_key
-
 ```
 
 This configuration tells SSH to use a specific key file when connecting to these services, eliminating the need to specify the key manually each time.
@@ -50,19 +49,13 @@ This configuration tells SSH to use a specific key file when connecting to these
 
 - **ServerAliveInterval**: This option can help keep connections alive by sending a signal every few seconds. Useful if your connection tends to drop due to inactivity.
   
-  textCopy code
-  
   `Host *     ServerAliveInterval 60`
 
 - **AddKeysToAgent**: Automatically adds your SSH keys to the SSH agent upon connection. This is useful if you're using an SSH agent for key management.
   
-  textCopy code
-  
   `Host *     AddKeysToAgent yes`
 
 - **ForwardAgent**: Allows your SSH key authentication to be forwarded to a server you're SSH'ing into, enabling you to connect to another server from there using your local SSH keys.
-  
-  textCopy code
   
   `Host myserver     ForwardAgent yes`
 

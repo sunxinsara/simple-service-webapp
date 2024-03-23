@@ -8,15 +8,15 @@ IntelliJ IDEA is a powerful IDE that supports integration with Git, allowing dev
 
 2. **Configure Git in IDEA**: Open IntelliJ IDEA and navigate to `File` -> `Settings` (on Windows and Linux) or `IntelliJ IDEA` -> `Preferences` (on macOS). Go to `Version Control` -> `Git`. Click the `...` button next to the `Path to Git executable` and select the path to the Git executable on your computer, usually `C:\Program Files\Git\bin\git.exe` on Windows or `/usr/bin/git` on Linux and macOS.
    
-   <img title="" src="file:///C:/Users/sunxin/AppData/Roaming/marktext/images/2024-03-23-00-20-10-image.png" alt="" data-align="center">
+   <img title="" src="./images/2024-03-23-00-20-10-image.png" alt="" data-align="center">
    
-   ![](C:\Users\sunxin\AppData\Roaming\marktext\images\2024-03-23-00-21-00-image.png)
+   ![](./images/2024-03-23-00-21-00-image.png)
 
 ## Create a Git repository
 
 The traditional way to initiate a new git repository is to use command ‘git init’. Another way to initiate. Using GitHub create a repository, then clone to your local machine.
 
-<img src="file:///C:/Users/sunxin/AppData/Roaming/marktext/images/2024-03-23-11-29-18-image.png" title="" alt="" data-align="center">
+<img title="" src="./images/2024-03-23-11-29-18-image.png" alt="" data-align="center">
 
 ## Committing Changes with Git in IntelliJ IDEA
 
@@ -30,17 +30,66 @@ As for Making commits, you can use git command with git bash. Or using your IDE,
 
 3. **Select Files to Commit**: In the Commit window, select the files you want to commit. You can also enter a commit message describing the changes.
    
-   <img src="file:///C:/Users/sunxin/AppData/Roaming/marktext/images/2024-03-23-11-34-33-image.png" title="" alt="" data-align="center">
+   <img title="" src="./images/2024-03-23-11-34-33-image.png" alt="" data-align="center">
 
 4. **Commit Changes**:
    
    - Click the `Commit` button (or `Commit and Push` if you want to immediately push the changes to a remote repository).
      
-     <img src="file:///C:/Users/sunxin/AppData/Roaming/marktext/images/2024-03-23-11-33-16-image.png" title="" alt="" data-align="center">
+     <img title="" src="./images/2024-03-23-11-33-16-image.png" alt="" data-align="center">
 
 If you want to ingore this warning, you can choose commit anyway.
 
-![](C:\Users\sunxin\AppData\Roaming\marktext\images\2024-03-23-11-36-24-image.png) 
+<img title="" src="./images/2024-03-23-11-36-24-image.png" alt="" data-align="center">
+
+When you successfully commit, you can see your commit in log pan.
+
+![](./images/2024-03-23-11-38-09-image.png) 
+
+## Create a branch
+
+In the IDE, the visualized git tool pan, you can easily find the plus symbol to create a new branch.
+
+![](./images/2024-03-23-11-40-15-image.png)
+
+![](./images/2024-03-23-11-40-36-image.png)
+
+## Merge branches
+
+Add a commit in test branch
+
+![](./images/2024-03-23-11-43-09-image.png)
+
+Go back to master branch by clicking the branch choice.
+Go to the top menu bar. Find Git -> Merge.
+
+<img title="" src="./images/2024-03-23-11-43-47-image.png" alt="" data-align="center">
+
+<img title="" src="./images/2024-03-23-11-44-05-image.png" alt="" data-align="center"><img title="" src="./images/2024-03-23-11-44-25-image.png" alt="" data-align="center">
+
+## Handle merge conflicts
+
+Conflicts in Git occur when multiple changes are made to the same part of a file in different branches or commits and Git is unable to automatically merge them. This usually happens when two developers are working on the same codebase and make different changes to the same lines of code or when a developer's local branch diverges significantly from the branch they are trying to merge into or rebase onto.
+
+### Simulate a local merge conflict.
+
+<img title="" src="./images/2024-03-23-11-53-00-image.png" alt="" data-align="center">
+
+<img title="" src="./images/2024-03-23-11-53-32-image.png" alt="" data-align="center">
+
+Click the alpply button and confim your changes.
+
+<img title="" src="./images/2024-03-23-11-54-13-image.png" alt="" data-align="center">
+
+After merge check dev branch log.
+
+<img title="" src="./images/2024-03-23-11-55-03-image.png" alt="" data-align="center">
+
+### Simulate a pull request merge conflict.
+
+
+
+
 
 ## Updating Project with Git in IntelliJ IDEA
 
@@ -48,7 +97,7 @@ If you want to ingore this warning, you can choose commit anyway.
    
    - To fetch the latest changes from the remote repository, go to `VCS > Git > Fetch`.
      
-     <img title="" src="file:///C:/Users/sunxin/AppData/Roaming/marktext/images/2024-03-23-00-14-00-image.png" alt="" data-align="center">
+     <img title="" src="./images/2024-03-23-00-14-00-image.png" alt="" data-align="center">
 
 2. **Pull Changes**:
    
