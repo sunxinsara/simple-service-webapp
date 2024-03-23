@@ -89,43 +89,41 @@ After merge check dev branch log.
 
 Simulate a conflict in branch test and testConflict. Edit same line, the password line.
 
-![2024-03-23-12-25-23-image.png](./images/2024-03-23-12-25-23-image.png)
+![2024-03-23-12-25-23-image.png](C:\Users\sunxin\AppData\Roaming\marktext\images\2024-03-23-12-25-23-image.png)
 
-![2024-03-23-12-25-57-image.png](./images/2024-03-23-12-25-57-image.png)
+![2024-03-23-12-25-57-image.png](C:\Users\sunxin\AppData\Roaming\marktext\images\2024-03-23-12-25-57-image.png)
 
-![2024-03-23-12-26-29-image.png](./images/2024-03-23-12-26-29-image.png)
+![2024-03-23-12-26-29-image.png](C:\Users\sunxin\AppData\Roaming\marktext\images\2024-03-23-12-26-29-image.png)
 
 Then push all these changes to GitHub.
 
-![2024-03-23-12-27-01-image.png](./images/2024-03-23-12-27-01-image.png)
+![2024-03-23-12-27-01-image.png](C:\Users\sunxin\AppData\Roaming\marktext\images\2024-03-23-12-27-01-image.png)
 
 Create a pull request to merge test branch into testconflict branch. You will see the warnning that GitHub can not automaically merge because of the conflict.
 
-![2024-03-23-12-27-58-image.png](./images/2024-03-23-12-27-58-image.png)
+![2024-03-23-12-27-58-image.png](C:\Users\sunxin\AppData\Roaming\marktext\images\2024-03-23-12-27-58-image.png)
 
-![2024-03-23-12-28-53-image.png](./images/2024-03-23-12-28-53-image.png)
+![2024-03-23-12-28-53-image.png](C:\Users\sunxin\AppData\Roaming\marktext\images\2024-03-23-12-28-53-image.png)
 
 You need to resolve the conflict manully. Click the button "Resolve conflicts".
 
-![2024-03-23-12-30-16-image.png](./images/2024-03-23-12-30-16-image.png)
+![2024-03-23-12-30-16-image.png](C:\Users\sunxin\AppData\Roaming\marktext\images\2024-03-23-12-30-16-image.png)
 
 You will enter to the page showing your difference in those two branches.
 
-![2024-03-23-12-30-52-image.png](./images/2024-03-23-12-30-52-image.png)
+![2024-03-23-12-30-52-image.png](C:\Users\sunxin\AppData\Roaming\marktext\images\2024-03-23-12-30-52-image.png)
 
 Edit the code then click the button "Mark as resolved"
 
-![2024-03-23-12-31-37-image.png](./images/2024-03-23-12-31-37-image.png)
+![2024-03-23-12-31-37-image.png](C:\Users\sunxin\AppData\Roaming\marktext\images\2024-03-23-12-31-37-image.png)
 
 Then commit merge.
 
-![2024-03-23-12-31-48-image.png](./images/2024-03-23-12-31-48-image.png)
+![2024-03-23-12-31-48-image.png](C:\Users\sunxin\AppData\Roaming\marktext\images\2024-03-23-12-31-48-image.png)
 
 Congras, here you have already reolved the conflicted. 
 
-![2024-03-23-12-32-41-image.png](./images/2024-03-23-12-32-41-image.png)
-
-
+![2024-03-23-12-32-41-image.png](C:\Users\sunxin\AppData\Roaming\marktext\images\2024-03-23-12-32-41-image.png)
 
 ## Updating Project with Git in IntelliJ IDEA
 
