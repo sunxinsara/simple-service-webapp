@@ -44,21 +44,21 @@ If you want to ingore this warning, you can choose commit anyway.
 
 When you successfully commit, you can see your commit in log pan.
 
-![](./images/2024-03-23-11-38-09-image.png) 
+<img title="" src="./images/2024-03-23-11-38-09-image.png" alt="" data-align="center">
 
 ## Create a branch
 
 In the IDE, the visualized git tool pan, you can easily find the plus symbol to create a new branch.
 
-![](./images/2024-03-23-11-40-15-image.png)
+<img title="" src="./images/2024-03-23-11-40-15-image.png" alt="" data-align="center">
 
-![](./images/2024-03-23-11-40-36-image.png)
+<img title="" src="./images/2024-03-23-11-40-36-image.png" alt="" data-align="center">
 
 ## Merge branches
 
 Add a commit in test branch
 
-![](./images/2024-03-23-11-43-09-image.png)
+<img title="" src="./images/2024-03-23-11-43-09-image.png" alt="" data-align="center">
 
 Go back to master branch by clicking the branch choice.
 Go to the top menu bar. Find Git -> Merge.
