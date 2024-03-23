@@ -16,7 +16,7 @@ To check if Jenkins is running on Windows using Resource Monitor, follow these s
 
 5. **Verify Jenkins Activity**: If you see the Jenkins process (`java.exe` or another) using the expected port (e.g., 8080), Jenkins is running. If not, you might need to start the Jenkins service or investigate further.
    
-   <img src="file:///C:/Users/sunxin/AppData/Roaming/marktext/images/2024-03-23-13-08-46-image.png" title="" alt="" data-align="center">
+   <img title="" src="./images/2024-03-23-13-08-46-image.png" alt="" data-align="center">
 
 This method provides a quick way to verify Jenkins' operational status and its network activity on a Windows system.
 
@@ -27,8 +27,6 @@ This method provides a quick way to verify Jenkins' operational status and its n
 There are multiple ways to create a pipeline. I choose the easiest one which is to create a Jenkinsfile and store it in your SCM(here is GitHub). Then choose pipeline from SCM. Tell your link that jenkins can get all your jenkins code automatically for you.
 
 ![Screenshot 2024-03-23 13.16.19.png](./images/Screenshot%202024-03-23%2013.16.19.png)
-
-
 
 ## Setup Jenkins
 
