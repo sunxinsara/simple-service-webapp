@@ -190,7 +190,5 @@
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
         <war.mvn.plugin.version>3.4.0</war.mvn.plugin.version>
         <jacoco.version>0.8.7</jacoco.version>
-        <sonar.host.url>http://localhost:9000</sonar.host.url>
-        <sonar.scm.provider>git</sonar.scm.provider>
     </properties>
 </project>
