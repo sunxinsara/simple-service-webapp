@@ -53,14 +53,20 @@ function renderList(wineList){
 }
 
 var newWine = function(){
-    $('#wineId').val();
+    $('#wineId').val("");
     $('#wineId').attr('disable');
-    $('#name').val();
-    $('#grapes').val();
-    $('#country').val();
-    $('#region').val();
-    $('#year').val();
-    $('#description').val();
+    $('#name').val("");
+    $('#name').attr('enable');
+    $('#grapes').val("");
+    $('#grapes').attr('enable');
+    $('#country').val("");
+    $('#country').attr('enable');
+    $('#region').val("");
+    $('#region').attr('enable');
+    $('#year').val("");
+    $('#year').attr('enable');
+    $('#description').val("");
+    $('#description').attr('enable');
 }
 
 var form2JSON = function(){
