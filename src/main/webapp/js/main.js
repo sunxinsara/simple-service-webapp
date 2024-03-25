@@ -6,6 +6,9 @@ $(document).ready(function(){
         var hrefValue = $(this).attr('href');
         findById(hrefValue.substring(1));
     })
+
+    $(document).on('click', '#btnAdd', function(){newWine()});
+    $(document).on('click', '#btnSave', function(){addWine()});
 })
 
 var findAll = function(){
@@ -46,5 +49,46 @@ function renderList(wineList){
     $.each(wineList, function(index, wine){
         $("#wineList").append('<li><a href=#' + wine.id 
         +'>' + wine.name +'</a></li>');
+    })
+}
+
+var newWine = function(){
+    $('#wineId').val();
+    $('#wineId').attr('disable');
+    $('#name').val();
+    $('#grapes').val();
+    $('#country').val();
+    $('#region').val();
+    $('#year').val();
+    $('#description').val();
+}
+
+var form2JSON = function(){
+    return JSON.stringify({
+        "id": $('#wineId').val(),
+        "name": $('#name').val(),
+        "grapes": $('#grapes').val(),
+        "country": $('#country').val(),
+        "region": $('#region').val(),
+        "year": $('#year').val(),
+        "picture": "",
+        "description": $('#description').val(),
+    })
+}
+
+var addWine = function(){
+    $.ajax({
+        type: 'POST',
+        contentType: 'application/json',
+        url: rootURL,
+        data: form2JSON(),
+        success: function(data, textStatus, jqXHR){
+            alert('Wine created successfully');
+            $('#windId').val(data.id);
+            findAll();
+        },
+        error: function(jqXHR, textStatus, error){
+            alert('addWine error: ' + textStatus);
+        }
     })
 }

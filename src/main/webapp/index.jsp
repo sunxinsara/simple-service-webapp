@@ -10,10 +10,16 @@
 <body>
 <h2>Welcome to the WineCellar Application</h2>
 
+
 <div class="leftArea">
     <ul id="wineList"></ul>
 </div>
 <div class="mainArea">
+    <label for="searchBox">search for wine</label>
+    <input type="text" id="searchBox" name="searchBox">
+    <button type="button" id="searchWineBtn">Search</button>
+    <button type="button" id="btnAdd">New Wine</button>
+
     <label>Id:</label>
     <input id="wineId" name="Id" type="text" disable />
 
@@ -31,6 +37,8 @@
 
     <label>Year:</label>
     <input id="year" name="year" type="text" disable />
+
+    <button type="button" id="btnSave">Save</button>
 </div>
 
 <div class="rightArea">
