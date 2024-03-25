@@ -21,22 +21,22 @@
     <button type="button" id="btnAdd">New Wine</button>
 
     <label>Id:</label>
-    <input id="wineId" name="Id" type="text" disable />
+    <input id="wineId" name="Id" type="text" readonly  />
 
     <label>Name:</label>
-    <input id="name" name="name" type="text" disable />
+    <input id="name" name="name" type="text" readonly  />
 
     <label>Grapes:</label>
-    <input id="grapes" name="grapes" type="text" disable />
+    <input id="grapes" name="grapes" type="text" readonly  />
 
     <label>Country:</label>
-    <input id="country" name="country" type="text" disable />
+    <input id="country" name="country" type="text" readonly  />
 
     <label>Region:</label>
-    <input id="region" name="region" type="text" disable />
+    <input id="region" name="region" type="text" readonly  />
 
     <label>Year:</label>
-    <input id="year" name="year" type="text" disable />
+    <input id="year" name="year" type="text" readonly  />
 
     <button type="button" id="btnSave">Save</button>
 </div>
