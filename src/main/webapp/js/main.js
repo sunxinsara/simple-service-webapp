@@ -36,14 +36,14 @@ var findById = function(id){
     })
 }
 var renderDetails=function (wine){
-    $('#wineId').val(wine.id);
-    $('#name').val(wine.name);
-    $('#grapes').val(wine.grapes);
-    $('#country').val(wine.country);
-    $('#region').val(wine.region);
-    $('#year').val(wine.year);
+    $('#wineId').val(wine.id).prop('disabled', true);
+    $('#name').val(wine.name).prop('disabled', true);
+    $('#grapes').val(wine.grapes).prop('disabled', true);
+    $('#country').val(wine.country).prop('disabled', true);
+    $('#region').val(wine.region).prop('disabled', true);
+    $('#year').val(wine.year).prop('disabled', true);
     $('#pic').attr('src', 'pics/' + wine.picture);
-    $('#description').val(wine.description);
+    $('#description').val(wine.description).prop('disabled', true);
 }
 function renderList(wineList){
     $.each(wineList, function(index, wine){
@@ -54,24 +54,16 @@ function renderList(wineList){
 
 var newWine = function(){
     $('#wineId').val("");
-    $('#wineId').attr('disable');
-    $('#name').val("");
-    $('#name').attr('enable');
-    $('#grapes').val("");
-    $('#grapes').attr('enable');
-    $('#country').val("");
-    $('#country').attr('enable');
-    $('#region').val("");
-    $('#region').attr('enable');
-    $('#year').val("");
-    $('#year').attr('enable');
-    $('#description').val("");
-    $('#description').attr('enable');
+    $('#name').val("").prop('disabled', false);
+    $('#grapes').val("").prop('disabled', false);
+    $('#country').val("").prop('disabled', false);
+    $('#region').val("").prop('disabled', false);
+    $('#year').val("").prop('disabled', false);
+    $('#description').val("").prop('disabled', false);
 }
 
 var form2JSON = function(){
     return JSON.stringify({
-        "id": $('#wineId').val(),
         "name": $('#name').val(),
         "grapes": $('#grapes').val(),
         "country": $('#country').val(),
