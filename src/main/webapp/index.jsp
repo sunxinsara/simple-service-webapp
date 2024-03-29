@@ -39,6 +39,7 @@
     <input id="year" name="year" type="text" disabled  />
 
     <button type="button" id="btnSave">Save</button>
+    <button type="button" id="btnDelete">Delete</button>
 </div>
 
 <div class="rightArea">

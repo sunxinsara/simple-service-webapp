@@ -9,6 +9,10 @@ $(document).ready(function(){
 
     $(document).on('click', '#btnAdd', function(){newWine()});
     $(document).on('click', '#btnSave', function(){addWine()});
+    $('#btnDelete').hide();
+    $('#btnDelete').click(function (){
+        deleteWine();
+    })
 })
 
 var findAll = function(){
@@ -84,9 +88,29 @@ var addWine = function(){
             alert('Wine created successfully');
             $('#windId').val(data.id);
             findAll();
+            console.log(jqXHR);
         },
         error: function(jqXHR, textStatus, error){
-            alert('addWine error: ' + textStatus);
+            alert('addWine error: ' + textStatus + " " + error);
+            console.log(jqXHR);
         }
     })
+}
+
+var deleteWine = function (){
+    console.log('deleteWine');
+    $.ajax({
+        type: "DELETE",
+        url: rootURL + '/' + $('#wineId').val(),
+        success: function (data, textStatus, jqXHR){
+            alert('Wine deleted successfully');
+        },
+        error: function (jqXHR, textStatus, errorThrown){
+            alert('deleteWine error');
+        }
+    });
+
+    // delete a ul
+    $("#wineList").html('');
+    findAll();
 }
