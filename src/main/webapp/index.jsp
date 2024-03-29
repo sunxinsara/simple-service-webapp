@@ -15,9 +15,9 @@
     <ul id="wineList"></ul>
 </div>
 <div class="mainArea">
-    <label for="searchBox">search for wine</label>
-    <input type="text" id="searchBox" name="searchBox">
-    <button type="button" id="searchWineBtn">Search</button>
+    <label for="searchKey">search for wine</label>
+    <input type="text" id="searchKey" name="searchKey">
+    <button type="button" id="btnSearch">Search</button>
     <button type="button" id="btnAdd">New Wine</button>
 
     <label>Id:</label>

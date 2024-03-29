@@ -10,9 +10,16 @@ $(document).ready(function(){
     $(document).on('click', '#btnAdd', function(){newWine()});
     $(document).on('click', '#btnSave', function(){addWine()});
     $(document).on('click', '#btnUpdate', function (){updateWine()});
+    $(document).on('click', '#btnSearch', function (){searchWine($('#searchKey').val())});
+    $('#searchKey').keypress(function (e){
+        if(e.which == 13){
+            searchWine($('#searchKey').val());
+        }
+    })
     $('#btnSave').hide();
     $('#btnDelete').hide();
     $('#btnUpdate').hide();
+    $('#btnEdit').hide();
     $('#btnDelete').click(function (){
         deleteWine();
     })
@@ -23,6 +30,7 @@ $(document).ready(function(){
 
 var findAll = function(){
     console.log('findAll');
+    $("#wineList").html('');
     $.ajax({
         type: "GET",
         url: rootURL,
@@ -39,6 +47,7 @@ var findById = function(id){
         dataType: "json",
         success: function (data){
             $('#btnDelete').show();
+            $('#btnEdit').show();
             console.log('findBYId success: ' + data.name);
             currentWine = data;
             renderDetails(currentWine);
@@ -75,16 +84,21 @@ var newWine = function(){
     $('#btnSave').show();
 }
 
-var form2JSON = function(){
-    return JSON.stringify({
+var form2JSON = function(num){
+    var data = JSON.stringify({
         "name": $('#name').val(),
+        "id": $('#wineId').val(),
         "grapes": $('#grapes').val(),
         "country": $('#country').val(),
         "region": $('#region').val(),
         "year": $('#year').val(),
-        "picture": "",
+        "picture": $('#pic').val(),
         "description": $('#description').val(),
-    })
+    });
+    if (num == 1){
+        delete data['id'];
+    }
+    return data;
 }
 
 var addWine = function(){
@@ -92,13 +106,13 @@ var addWine = function(){
         type: 'POST',
         contentType: 'application/json',
         url: rootURL,
-        data: form2JSON(),
+        data: form2JSON(1),
         success: function(data, textStatus, jqXHR){
             alert('Wine created successfully');
-            $("#wineList").html('');
             $('#windId').val(data.id);
             findAll();
             console.log(jqXHR);
+
         },
         error: function(jqXHR, textStatus, error){
             alert('addWine error: ' + textStatus + " " + error);
@@ -113,6 +127,7 @@ var deleteWine = function (){
         type: "DELETE",
         url: rootURL + '/' + $('#wineId').val(),
         success: function (data, textStatus, jqXHR){
+            findAll();
             alert('Wine deleted successfully');
         },
         error: function (jqXHR, textStatus, errorThrown){
@@ -120,12 +135,12 @@ var deleteWine = function (){
         }
     });
 
-    // delete a ul
-    $("#wineList").html('');
-    findAll();
+
 }
 
 var editWine = function (){
+    $('#btnSave').hide();
+    $('#btnDelete').hide();
     $('#name').prop('disabled', false);
     $('#grapes').prop('disabled', false);
     $('#country').prop('disabled', false);
@@ -133,6 +148,17 @@ var editWine = function (){
     $('#year').prop('disabled', false);
     $('#description').prop('disabled', false);
     $('#btnUpdate').show();
+}
+
+var disableWine = function (){
+    $('#btnUpdate').hide();
+    $('#btnDelete').show();
+    $('#name').prop('disabled', true);
+    $('#grapes').prop('disabled', true);
+    $('#country').prop('disabled', true);
+    $('#region').prop('disabled', true);
+    $('#year').prop('disabled', true);
+    $('#description').prop('disabled', true);
 }
 
 var updateWine = function (){
@@ -145,9 +171,31 @@ var updateWine = function (){
         data: form2JSON(),
         success: function (data, textStatus, jqXHR){
             alert('Wine updated successfully');
+            disableWine();
         },
         error: function (jqXHR, textStatus, errorThrown){
             alert('updateWine error: ' + textStatus);
+        }
+    });
+}
+
+var searchWine = function (nameWine){
+    if (nameWine == ''){
+        findAll();
+    }else{
+        findByName(nameWine);
+    }
+}
+
+var findByName = function (name){
+    console.log('findByName' + name);
+    $.ajax({
+        type: 'GET',
+        url: rootURL + '/search/' + name,
+        dataType: 'json',
+        success: renderList,
+        error: function (jqXHR, textStatus, errorThrown){
+            alert('search: ' + textStatus);
         }
     });
 }
