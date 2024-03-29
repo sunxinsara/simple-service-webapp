@@ -9,9 +9,15 @@ $(document).ready(function(){
 
     $(document).on('click', '#btnAdd', function(){newWine()});
     $(document).on('click', '#btnSave', function(){addWine()});
+    $(document).on('click', '#btnUpdate', function (){updateWine()});
+    $('#btnSave').hide();
     $('#btnDelete').hide();
+    $('#btnUpdate').hide();
     $('#btnDelete').click(function (){
         deleteWine();
+    })
+    $('#btnEdit').click(function (){
+        editWine();
     })
 })
 
@@ -57,6 +63,8 @@ function renderList(wineList){
 }
 
 var newWine = function(){
+    $('#btnDelete').hide();
+    $('#btnEdit').hide();
     $('#wineId').val("");
     $('#name').val("").prop('disabled', false);
     $('#grapes').val("").prop('disabled', false);
@@ -64,6 +72,7 @@ var newWine = function(){
     $('#region').val("").prop('disabled', false);
     $('#year').val("").prop('disabled', false);
     $('#description').val("").prop('disabled', false);
+    $('#btnSave').show();
 }
 
 var form2JSON = function(){
@@ -86,6 +95,7 @@ var addWine = function(){
         data: form2JSON(),
         success: function(data, textStatus, jqXHR){
             alert('Wine created successfully');
+            $("#wineList").html('');
             $('#windId').val(data.id);
             findAll();
             console.log(jqXHR);
@@ -113,4 +123,31 @@ var deleteWine = function (){
     // delete a ul
     $("#wineList").html('');
     findAll();
+}
+
+var editWine = function (){
+    $('#name').prop('disabled', false);
+    $('#grapes').prop('disabled', false);
+    $('#country').prop('disabled', false);
+    $('#region').prop('disabled', false);
+    $('#year').prop('disabled', false);
+    $('#description').prop('disabled', false);
+    $('#btnUpdate').show();
+}
+
+var updateWine = function (){
+    console.log('updateWine');
+    $.ajax({
+        type: 'PUT',
+        contentType: 'application/json',
+        url: rootURL + '/' + $('wineId').val(),
+        dataType: "json",
+        data: form2JSON(),
+        success: function (data, textStatus, jqXHR){
+            alert('Wine updated successfully');
+        },
+        error: function (jqXHR, textStatus, errorThrown){
+            alert('updateWine error: ' + textStatus);
+        }
+    });
 }

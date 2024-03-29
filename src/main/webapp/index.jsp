@@ -38,8 +38,11 @@
     <label>Year:</label>
     <input id="year" name="year" type="text" disabled  />
 
+    <button type="button" id="btnEdit">Edit</button>
+    <button type="button" id="btnUpdate">Update</button>
     <button type="button" id="btnSave">Save</button>
     <button type="button" id="btnDelete">Delete</button>
+
 </div>
 
 <div class="rightArea">
