@@ -4,7 +4,13 @@
     <title>Cellar</title>
     <link rel="stylesheet" href="css/styles.css" />
     <script src="js/jquery-3.4.1.js"></script>
+    <script src="js/datatables.js"></script>
+    <script src="js/bootstrap.js"></script>
     <script src="js/main.js"></script>
+    <link rel="stylesheet" href="css/datatables.css"/>
+    <link rel="stylesheet" href="css/bootstrap.css"/>
+    <link rel="stylesheet" href="css/font-awesome.css"/>
+    <link rel="stylesheet" href="css/styles.css"/>
 </head>
 
 <body>
