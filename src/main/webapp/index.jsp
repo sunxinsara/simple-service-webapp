@@ -14,8 +14,12 @@
 </head>
 
 <body>
-<h2>Welcome to the WineCellar Application</h2>
-
+<h1>Welcome to the WineCellar Application</h1>
+<ul class="nav nav-tabs" role="tablist">
+    <li class="active"><a href="#home" role="tab" data-toggle="tab"> <span class="fa fa-car"></span>  Home</a></li>
+    <li><a href="#products" role="tab" data-toggle="tab"><span class="fa fa-cog"></span>Products</a></li>
+    <li><a href="#other" role="tab" data-toggle="tab"><span class="fa fa-spinner"></span> Other</a></li>
+</ul>
 
 <div class="leftArea">
     <ul id="wineList"></ul>
