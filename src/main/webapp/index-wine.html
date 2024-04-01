@@ -1,0 +1,91 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>Cellar</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<script src="js/jquery-3.4.1.js"></script>
+<script src="js/datatables.js"></script>
+<script src="js/bootstrap.js"></script>
+<script src="js/main-wine.js"></script>
+<link rel="stylesheet" href="css/datatables.css"/>
+<link rel="stylesheet" href="css/bootstrap.css"/>
+<link rel="stylesheet" href="css/font-awesome.css"/>
+<link rel="stylesheet" href="css/main-wine.css"/>
+</head>
+
+<body>
+    <h1>Welcome to the Wine List Application</h1>
+    <!-- Nav tabs -->
+    <ul class="nav nav-tabs" role="tablist">
+        <li class="active"><a href="#home" role="tab" data-toggle="tab"> <span class="fa fa-car"></span>  Home</a></li>
+        <li><a href="#products" role="tab" data-toggle="tab"><span class="fa fa-cog"></span>Products</a></li>
+        <li><a href="#other" role="tab" data-toggle="tab"><span class="fa fa-spinner"></span> Other</a></li>
+     </ul>
+<!-- Tab panes -->
+    <div class="tab-content">
+        <div class="tab-pane active" id="home">
+            <h1>Home Page</h1>
+        </div>
+        <div class="tab-pane" id="products">
+            <table id="table_id" class="display">
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Grapes</th>
+                        <th>Country</th>
+                        <th>Year</th>
+                    </tr>
+                <tbody id="table_body">
+                </tbody>
+            </table>
+        </div>
+        <div class="tab-pane" id="other">
+            <h2>Modal Example</h2>
+            <button type="button" id="modalBtn" class="btn btn-primary">
+  Recommended Wine
+</button>
+
+<!-- The Modal -->
+<div class="modal" id="myModal">
+  <div class="modal-dialog">
+    <div class="modal-content">
+
+      <!-- Modal Header -->
+      <div class="modal-header">
+        <h4 class="modal-title">Wine of the week</h4>
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+      </div>
+
+      <!-- Modal body -->
+      <div class="modal-body">
+       <form id="wineForm">
+	
+<div class="mainArea">
+    <label>Name:</label>
+    <input type="text" id="name" name="name" required>
+
+    <label>Grapes:</label>
+    <input type="text" id="grapes" name="grapes"/>
+
+    <label>Country:</label>
+    <input type="text" id="country" name="country"/>
+
+    <label>Region:</label>
+    <input type="text" id="region" name="region"/>
+
+    <label>Year:</label>
+    <input type="text" id="year" name="year"/>
+      </div>
+
+      <!-- Modal footer -->
+      <div class="modal-footer">
+        <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+      </div>
+
+    </div>
+  </div>
+</div>
+        </div>   
+    </div>
+</body>
+</html>
