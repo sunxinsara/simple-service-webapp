@@ -62,6 +62,8 @@ class WineDAOTest {
         assertEquals(1, result.getId());
 
     }
+
+
     @Test
     void findByName() {
         List<Wine> wines = wineDAO.findByName("merlot");
