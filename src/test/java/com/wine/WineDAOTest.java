@@ -63,7 +63,6 @@ class WineDAOTest {
 
     }
 
-
     @Test
     void findByName() {
         List<Wine> wines = wineDAO.findByName("merlot");
