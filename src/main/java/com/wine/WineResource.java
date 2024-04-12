@@ -67,8 +67,6 @@ public class WineResource {
         }catch (Exception e){
             return Response.status(500).build();
         }
-
-
     }
 
     @POST

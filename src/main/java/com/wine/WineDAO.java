@@ -136,6 +136,9 @@ public class WineDAO {
             ps.setObject(6,wine.getPicture());
             ps.setObject(7,wine.getDescription());
             ps.setObject(8,wine.getId());
+
+            int i = ps.executeUpdate();
+
         }catch (SQLException e){
             logger.error("Error accessing update()", e);
             throw new DatabaseException("Error accessing update()", e);
