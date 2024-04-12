@@ -48,7 +48,6 @@ class WineDAOTest {
     @Test
     public void testFindAll() throws SQLException {
 
-
         List<Wine> result = wineDAO.findAll();
         assertNotNull(result);
 
