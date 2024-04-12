@@ -6,8 +6,8 @@ pipeline{
     properties([
     pipelineTriggers([
         issueCommentTrigger('.*test this please.*')
+        ])
     ])
-])
     
     environment {
         SONAR_TOKEN = credentials('SONAR_TOKEN')
