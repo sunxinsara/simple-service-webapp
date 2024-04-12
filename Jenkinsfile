@@ -4,6 +4,10 @@ pipeline{
         maven "maven3"
     }
     
+    triggers {
+        issueCommentTrigger('.*test this please.*')
+    }
+    
     environment {
         SONAR_TOKEN = credentials('SONAR_TOKEN')
         SONAR_HOST_URL = 'https://sonarcloud.io'
