@@ -3,6 +3,10 @@ pipeline{
     tools{
         maven "maven3"
     }
+    
+    triggers {
+        issueCommentTrigger('.*test this please.*')
+    }
     options {
         pipelineTriggers([
             issueCommentTrigger('regexpPattern', '.*test this please.*')
