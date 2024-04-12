@@ -3,11 +3,11 @@ pipeline{
     tools{
         maven "maven3"
     }
-    properties([
+    options([
     pipelineTriggers([
         issueCommentTrigger('.*test this please.*')
         ])
-    ])
+    ]) // The ‘properties’ section has been renamed as of version 0.8. Use ‘options’ instead.
     
     environment {
         SONAR_TOKEN = credentials('SONAR_TOKEN')
